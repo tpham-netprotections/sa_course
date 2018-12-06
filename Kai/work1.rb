@@ -7,98 +7,92 @@
     5 => {'mail_address' => "tnagasaki@netprotections.co.jp", 'phone_number' => "01-1234-5678", 'name_kanji' => "髟ｷ蟠� 螟ｪ蠢�", 'name_kana' => "繝翫ぎ繧ｶ繧ｭ縲繧ｿ繧､繧ｷ", 'sex_division' => "逕ｷ諤ｧ", 'birth_day' => "1991/09/16", 'address' => "譚ｱ莠ｬ驛ｽ荳ｭ螟ｮ蛹ｺ驫蠎ｧ1-10-6 驫蠎ｧ繝輔ぃ繝ｼ繧ｹ繝医ン繝ｫ4髫�"},
     6 => {'mail_address' => "kfukakawa@netprotections.co.jp", 'phone_number' => "01-1234-5678", 'name_kanji' => "豺ｱ蟾� 蛛･螟ｪ", 'name_kana' => "繝輔き繧ｱ繝ｳ", 'sex_division' => "逕ｷ諤ｧ", 'birth_day' => "1991/09/16", 'address' => "譚ｱ莠ｬ驛ｽ荳ｭ螟ｮ蛹ｺ驫蠎ｧ1-10-6 驫蠎ｧ繝輔ぃ繝ｼ繧ｹ繝医ン繝ｫ4髫�"}
     }
-    #ログインステータスを作る
-  @login_status=FALSE
-  @login_password="1234"
+
+#ログインステータスを作る
+@login_status=FALSE
+@login_password="1234"
 
 
 
 def menu
-p "---------------------"
-p "1.member_register"
-p "2.login/logout"
-p "3.member_search"
-p "4.member_edit"
-p "5.service_start/stop"
-p "0.end"
+  p "---------------------"
+  p "1.member_register"
+  p "2.login/logout"
+  p "3.member_search"
+  p "4.member_edit"
+  p "5.service_start/stop"
+  p "0.end"
 
-p "select number:"
-menu = gets.chomp.to_i
-if menu == 1
-  p "mail_address:"
-  mail_adress = gets.chomp
-  p "phone_number:"
-  phone_number = gets.chomp
-  p "name_kanji:"
-  name_kanji = gets.chomp
-  p "name_kana:"
-  name_kana = gets.chomp
-  p "sex_division:"
-  sex_division = gets.chomp
-  p "birth_day:"
-  birth_day = gets.chomp
-  p "adress"
-  adress = gets.chomp
-  members[members.length] = {'mail_address' => mail_adress, 'phone_number' => phone_number, 'name_kanji' => name_kanji, 'name_kana' => name_kana, 'sex_division' => sex_division, 'birth_day' => birth_day, 'address' => adress}
-  p members[members.length-1]
+  p "select number:"
+  menu = gets.chomp.to_i
+  if menu == 1
+    p "mail_address:"
+    mail_adress = gets.chomp
+    p "phone_number:"
+    phone_number = gets.chomp
+    p "name_kanji:"
+    name_kanji = gets.chomp
+    p "name_kana:"
+    name_kana = gets.chomp
+    p "sex_division:"
+    sex_division = gets.chomp
+    p "birth_day:"
+    birth_day = gets.chomp
+    p "adress"
+    adress = gets.chomp
+    @members[@members.length] = {'mail_address' => mail_adress, 'phone_number' => phone_number, 'name_kanji' => name_kanji, 'name_kana' => name_kana, 'sex_division' => sex_division, 'birth_day' => birth_day, 'address' => adress}
+    p @members[@members.length-1]
 
 
-elsif menu == 2
-  # login
-    p ("login/logout")
+  elsif menu == 2
+    # login
+    p "login/logout"
     if @login_status==TRUE
-      p ("Let's logout")
+      p "Let's logout"
       @login_status=FALSE
 
     else
-     p("Let's login")
-      p ("please password")
-        password =gets.chomp
-        @login_status=TRUE
-      end
+      p "Let's login"
+      p "please password"
+      password =gets.chomp
+      @login_status=TRUE
+    end
 
 
-elsif menu == 3
-  if login_status==FLASE
-    p("please login")
+  elsif menu == 3
+    if @login_status==FALSE
+      p "please login"
+
+    # 数字をいれてください
+  else
+    p "please number"
+    @numberes=gets.chomp.to_i
+    p @members[@numberes]
+  end
 
 
-  # 数字をいれてください
-else
-  p ("please number")
-  @numberes=gets.chomp.to_i
-  p @members[@numberes]
-end
+  elsif menu == 4
+    if @login_status==FALSE
+      p "please login"
 
+  else
+    p "please number"
+    @numberes=gets.chomp.to_i
+      @member=@members[@numberes]
+      p @member
+      p "please item"
+      @item=gets.chomp
 
-elsif menu == 4
-  if login_status==FLASE
-    p("please login")
+      p "plaese new info"
+      @members[@numberes][@item]=gets.chomp
+  end
 
-else
-  p ("please number")
-  @numberes=gets.chomp.to_i
-    @member=@members[@numberes]
-    p @member
-    p("please item")
-    @item=gets.chomp
-
-    p ("plaese new info")
-    @members[@numberes][@item]=gets.chomp
-end
-
-
-
-else menu == 5
-exit
-#
-end
+  else menu == 5
+  exit
+  end
 end
 
 
 while true do
   menu
 end
-
-# end
-# end
