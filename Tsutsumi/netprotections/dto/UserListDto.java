@@ -39,4 +39,8 @@ public class UserListDto {
 		this.members = members;
 	}
 
+	public void addMember(UserDto members) {
+		this.members.add(member);
+	}
+
 }

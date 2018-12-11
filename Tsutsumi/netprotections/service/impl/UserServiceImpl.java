@@ -13,37 +13,39 @@ public class UserServiceImpl implements UserService {
 
 		Scanner sccaner = new Scanner(System.in);
 
-		UserDto NewUser = new UserDto();
+		UserDto newUser = new UserDto();
 
 		System.out.println("メールアドレスを入力して下さい");
 		String mail_address  = sccaner.next();
-		NewUser.setMail_address(mail_address);
+		newUser.setMail_address(mail_address);
 
 		System.out.println("電話番号を入力して下さい");
 		String phone_number  = sccaner.next();
-		NewUser.setPhone_number(phone_number);
+		newUser.setPhone_number(phone_number);
 
 		System.out.println("名前(漢字)を入力して下さい");
 		String name_kanji  = sccaner.next();
-		NewUser.setName_kanji(name_kanji);
+		newUser.setName_kanji(name_kanji);
 
 		System.out.println("名前(カナ)で入力して下さい");
 		String name_kana  = sccaner.next();
-		NewUser.setName_kana(name_kana);
+		newUser.setName_kana(name_kana);
 
 		System.out.println("性別を選んで下さい\r\n1:男性\r\n2:女性\r\n3:その他");
 		int sex_division  = sccaner.nextInt();
-		NewUser.setSex_division(sex_division);
+		newUser.setSex_division(sex_division);
 
 		System.out.println("誕生日を入力して下さい");
 		String birth_day  = sccaner.next();
-		NewUser.setBirth_day(birth_day);
+		newUser.setBirth_day(birth_day);
 
 		System.out.println("住所を入力して下さい");
 		String address  = sccaner.next();
-		NewUser.setAddress(address);
-		initialUserListDto.getMembers().add(NewUser);
+		newUser.setAddress(address);
+		initialUserListDto.addMember(newUser);
 		System.out.println("ユーザーを登録しました");
+
+		return initialUserListDto;
 	}
 @Override
 	public void UserSearch(UserListDto InitialUserListDto,int id) {

@@ -20,10 +20,9 @@ public class ArchitectureCourseApplication {
 
 		UserListDto InitialUserListDto = new UserListDto();
 		UserDto InitialUser = new UserDto("tz59579@gmail.com","09041309932","堤春陽", "ツツミハルヒ",1,"19930504","東京都文京区大塚");
-		List<UserDto> InitialUserList = new ArrayList<UserDto>();
-		InitialUserList.add(InitialUser);
-		InitialUserListDto.setMembers(InitialUserList);
+		InitialUserListDto.addMember(InitialUser);
 		InitialUserListDto.setLogin_status(0);
+
 	while(true) {
 		System.out.println("================================================");
 		System.out.println("1.ユーザー登録\r\n2.ログイン/ログアウト\r\n3.会員情報検索\r\n4.会員情報変更\r\n機能を選んで下さい");
@@ -34,7 +33,7 @@ public class ArchitectureCourseApplication {
 			switch(SelectedMehod) {
 
 			case 1:
-				UserService.UserNew(InitialUserListDto);
+				InitialUserListDto = UserService.UserNew(InitialUserListDto);
 				continue;
 
 			case 2:
