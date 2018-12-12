@@ -82,8 +82,8 @@ def member_search
     login_logout
     if @login_status == true
       p "you can edit information"
-      member_edit
-    end 
+      member_search
+    end
   end
 end
 
