@@ -35,9 +35,7 @@ def sign_up
   birth_day = gets.chomp
   a['birth_day'] = mail_adress
   @members[@members.length] = a
-
   puts "会員登録が完了しました"
-
 end
 
 def sign_in
