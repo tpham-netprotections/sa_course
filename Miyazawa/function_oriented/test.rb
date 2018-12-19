@@ -1,3 +1,6 @@
+require 'C:\Users\t.miyazawa\development\Take\Miyazawa\module_oriented\member.rb'
+include Member
+
 @login_status = nil
 @members = {
     0 => {'mail_address' => "tpham@netprotections.co.jp", 'phone_number' => "01-1234-5678", 'name_kanji' => "Pham Thuc Hung", 'name_kana' => "ファン　トュック　フン", 'sex_division' => "男性", 'birth_day' => "1991/09/16", 'address' => "東京都中央区銀座1-10-6 銀座ファーストビル4階"},
@@ -10,81 +13,57 @@
     }
 
 #{}
-def sign_up
-  a={}
-  puts "メールアドレスを入力してください"
-  mail_adress = gets.chomp
-  a['mail_address'] = mail_adress
-  puts "電話番号を入力してください"
-  phone_number = gets.chomp
-  a['phone_number'] = mail_adress
 
-  puts "名字を入力してください"
-  name_kanji = gets.chomp
-  a['name_kanji'] = mail_adress
+  def sign_up
+    a={}
+    puts "メールアドレスを入力してください"
+    mail_adress = gets.chomp
+    a['mail_address'] = mail_adress
+    puts "電話番号を入力してください"
+    phone_number = gets.chomp
+    a['phone_number'] = mail_adress
 
-  puts "名前を入力してください"
-  name_kana = gets.chomp
-  a['name_kana'] = mail_adress
+    puts "名字を入力してください"
+    name_kanji = gets.chomp
+    a['name_kanji'] = mail_adress
 
-  puts "性別を選択してください 男性or女性"
-  sex_division = gets.chomp
-  a['sex_division'] = mail_adress
+    puts "名前を入力してください"
+    name_kana = gets.chomp
+    a['name_kana'] = mail_adress
 
-  puts "生年月日を入力してください"
-  birth_day = gets.chomp
-  a['birth_day'] = mail_adress
-  @members[@members.length] = a
-  puts "会員登録が完了しました"
-end
+    puts "性別を選択してください 男性or女性"
+    sex_division = gets.chomp
+    a['sex_division'] = mail_adress
 
-def sign_in
-  if @login_status == nil
-      while @login_status == nil
-      puts "パスワードを入力してください："
-      login = gets.chomp.to_i
-      password =1234
-        if login == password
-          @login_status = true
-          puts "ログインしました"
-          puts " "
-        else
-          puts "パスワードが間違っています"
-        end
-      end
+    puts "生年月日を入力してください"
+    birth_day = gets.chomp
+    a['birth_day'] = mail_adress
+    @members[@members.length] = a
+    puts "会員登録が完了しました"
+  end
+
+
+  def show
+    puts "現在の会員数は" + @members.length.to_s + "名です"
+    puts "会員IDは1～" + @members.length.to_s + "のうちから選択してください"
+    puts "確認したい会員IDを入力してください："
+
+    id = gets.chomp.to_i
+    if id>@members.length || id < 1
+      puts "そのidは存在しません"
     else
-      puts "ログアウトしますか？（YES / NO）"
-      logout = gets.chomp.to_s
-      if logout == "YES"
-        @login_status = nil
-        puts "ログアウトしました"
-      else
-        puts "次の機能を選んでください"
-      end
+      puts "会員No" + @members[id].to_s + "の情報"
+      puts "================================"
+      member = @members[id]
+      puts member["mail_address"]
+      puts member["phone_number"]
+      puts member["name_kanji"]
+      puts member["name_kana"]
+      puts member["sex_division"]
+      puts member["birth_day"]
+      puts member["address"]
+    end
   end
-end
-
-def show
-  puts "現在の会員数は" + @members.length.to_s + "名です"
-  puts "会員IDは1～" + @members.length.to_s + "のうちから選択してください"
-  puts "確認したい会員IDを入力してください："
-
-  id = gets.chomp.to_i
-  if id>@members.length || id < 1
-    puts "そのidは存在しません"
-  else
-    puts "会員No" + @members[id].to_s + "の情報"
-    puts "================================"
-    member = @members[id]
-    puts member["mail_address"]
-    puts member["phone_number"]
-    puts member["name_kanji"]
-    puts member["name_kana"]
-    puts member["sex_division"]
-    puts member["birth_day"]
-    puts member["address"]
-  end
-end
 
 def change
   puts "現在の会員数は" + @members.length.to_s + "名です"
@@ -152,6 +131,34 @@ def change
   end
 end
 
+
+def sign_in
+  if @login_status == nil
+      while @login_status == nil
+      puts "パスワードを入力してください："
+      login = gets.chomp.to_i
+      password =1234
+        if login == password
+          @login_status = true
+          puts "ログインしました"
+          puts " "
+        else
+          puts "パスワードが間違っています"
+        end
+      end
+    else
+      puts "ログアウトしますか？（YES / NO）"
+      logout = gets.chomp.to_s
+      if logout == "YES"
+        @login_status = nil
+        puts "ログアウトしました"
+      else
+        puts "次の機能を選んでください"
+      end
+  end
+end
+
+
 def delete_user
   puts "削除したいユーザーのidを入力してください"
   id = gets.chomp.to_i
@@ -217,7 +224,6 @@ while true
     exit()
     break
   end
-
 end
 # 会員登録
 
