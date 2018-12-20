@@ -25,7 +25,8 @@ module User
       address =  gets.chomp
       a['address'] = address
     @members[@members.length] = a
-    puts "会員登録を完了しました。"
+    puts "会員登録を完了しました"
+    # return @members
   end
 
   def search
@@ -115,5 +116,9 @@ module User
       puts @member['address']
     end
   end
+
+module_function :signup
+module_function :search
+module_function :edit
 
 end

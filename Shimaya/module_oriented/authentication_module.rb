@@ -1,4 +1,4 @@
-module authentication
+module Authentication
 
   def login
     if @login == true
@@ -23,5 +23,6 @@ module authentication
       end
     end
   end
+  module_function :login
 
 end

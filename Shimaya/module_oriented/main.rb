@@ -1,6 +1,28 @@
+require('./data.rb')
+require('./user_module.rb')
+require('./authentication_module.rb')
+
 @login == nil
 
-while true
+def selection
+  if @imput == "1"
+    User.signup
+  else
+    if @imput == "2"
+      Authentication.login
+    else
+      if @imput == "3"
+        User.search
+      else
+        if @imput == "4"
+          User.edit
+        end
+      end
+    end
+  end
+end
+
+def menu()
   puts "=========会員管理サービス=========
   １．会員登録
   ２．ログイン/ログアウト
@@ -9,30 +31,10 @@ while true
   ５．サービス利用登録/停止
   ０．終了
   機能を選んでください~~："
-  imput = gets.chomp
+  @imput = gets.chomp
+  selection
+end
 
-  if imput == "1"
-    signup()
-  else
-    if imput == "2"
-      login()
-    else
-      if imput == "3"
-        search()
-      else
-        if imput == "4"
-          edit()
-        else
-          if imput == "5"
-            startstop()
-          else
-            if imput == "0"
-              break
-            end
-          end
-        end
-      end
-    end
-  end
-
+while true
+  menu()
 end
