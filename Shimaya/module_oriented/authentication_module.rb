@@ -1,5 +1,7 @@
 module Authentication
 
+  require('./data.rb')
+
   def login
     if @login == true
       puts "You already logged in."
