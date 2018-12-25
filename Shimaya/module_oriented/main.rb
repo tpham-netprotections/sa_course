@@ -4,21 +4,20 @@ require('./authentication_module.rb')
 
 @login == nil
 
-def selection
-  if @imput == "1"
-    User.signup
-  else
-    if @imput == "2"
-      Authentication.login
-    else
-      if @imput == "3"
-        User.search
-      else
-        if @imput == "4"
-          User.edit
-        end
-      end
-    end
+def selection(input)
+  case input
+  when "1"
+    @members = User.signup(@members)
+  when "2"
+    @login = Authentication.login(@login)
+  when "3"
+    @login = Authentication.check(@login)
+    User.search(@members)
+  when "4"
+    @login = Authentication.check(@login)
+    @members = User.edit(@members)
+  when "0"
+    exit
   end
 end
 
@@ -31,8 +30,8 @@ def menu()
   ５．サービス利用登録/停止
   ０．終了
   機能を選んでください~~："
-  @imput = gets.chomp
-  selection
+  input = gets.chomp
+  selection(input)
 end
 
 while true
