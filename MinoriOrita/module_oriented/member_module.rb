@@ -1,5 +1,8 @@
+#会員管理
 module MemberModule
+#認証モジュールを読み込む
 require('./authentication_module.rb')
+  #会員登録
   def member_register(members)
     p "mail_address:"
 
@@ -28,8 +31,10 @@ require('./authentication_module.rb')
     p members[members.length-1]
   end
 
+  #会員検索
   def member_search(login_status,members)
-    if login_status == true
+    login_status = $login_status
+    if $login_status == true
       p "put member ID"
       p "member ID:"
       member_id = gets.chomp.to_i
@@ -37,18 +42,20 @@ require('./authentication_module.rb')
     else
       p "please login"
       AuthenticaionModule.login_logout(login_status)
-      if login_status == true
+      if $login_status == true
         p "you can search a member"
-        MemberModule.member_search()
+        MemberModule.member_search(login_status,members)
       end
     end
   end
 
-  def member_edit
-    if @login_status == true
+  #会員編集
+  def member_edit(login_status,members,item)
+    login_status = $login_status
+    if $login_status == true
     p "member ID:"
     member_id = gets.chomp.to_i
-    p @members[member_id]
+    p members[member_id]
     p "---------------------"
     p "0.mail_address"
     p "1.phone_number"
@@ -59,17 +66,17 @@ require('./authentication_module.rb')
     p "---------------------"
     p "select item number"
     item_number = gets.chomp.to_i
-    item_name = @item[item_number]
-    p @members[member_id][item_name]
+    item_name = item[item_number]
+    p members[member_id][item_name]
     p "input new"+" "+ "#{item_name}" + ":"
-    @members[member_id][item_name] = gets.chomp
-    p @members[member_id][item_name]
+    members[member_id][item_name] = gets.chomp
+    p members[member_id][item_name]
   else
     p "please login"
-    login_logout
-    if @login_status == true
+    AuthenticaionModule.login_logout(login_status)
+    if $login_status == true
       p "you can edit information"
-      member_edit
+      MemberModule.member_edit(login_status,members,item)
     end
    end
   end
