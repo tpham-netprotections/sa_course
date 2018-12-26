@@ -1,4 +1,6 @@
 module User
+  # ファンクションのためのモジュールで、データは持たない
+  # require('./data.rb')
 
   def signup(members)
     a = {}

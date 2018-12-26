@@ -3,6 +3,7 @@ require('./user_module.rb')
 require('./authentication_module.rb')
 
 @login == nil
+# グローバル変数は定義したくない：モジュールの独立性の担保のため
 
 def selection(input)
   case input

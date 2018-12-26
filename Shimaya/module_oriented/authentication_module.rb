@@ -1,6 +1,6 @@
 module Authentication
-
-  require('./data.rb')
+  # ファンクションのためのモジュールで、データは持たない
+  # require('./data.rb')
 
   def check(login)
     if login == nil
