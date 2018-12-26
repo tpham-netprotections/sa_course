@@ -70,4 +70,28 @@ module Member
 
   module_function :register
 
+  def service_register(service_usages, services)
+    puts '会員IDを入力してください'
+    member_id = gets.chomp.to_i
+    index = 0
+    services.each do |service|
+
+      puts "#{index}.#{service}"
+      index += 1
+    end
+
+    puts 'サービスIDを入力してください'
+    service_id = gets.chomp.to_i
+    if service_usages[member_id][service_id]
+      puts 'サービス利用停止します'
+      service_usages[member_id][service_id] = false
+    else
+      puts 'サービス利用開始します'
+      service_usages[member_id][service_id] = true
+    end
+
+    return service_usages
+  end
+
+  module_function :service_register
 end
