@@ -14,7 +14,7 @@ public class MainMenu {
   public int loginPassword;
 
 
-  public static void main(String[] args) {
+  public void main() {
 
     //ユーザーインスタンスの作成
     Member user = new Member(null, null, null, null, null, null ,null);
