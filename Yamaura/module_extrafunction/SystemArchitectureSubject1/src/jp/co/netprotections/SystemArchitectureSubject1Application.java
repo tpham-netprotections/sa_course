@@ -7,6 +7,7 @@ import java.util.Scanner;
 import jp.co.netprotections.authentication.AuthenticationModule;
 import jp.co.netprotections.member.MemberModule;
 import jp.co.netprotections.membersList.MembersList;
+import jp.co.netprotections.data.Data;
 
 public class SystemArchitectureSubject1Application {
 
@@ -22,22 +23,9 @@ public class SystemArchitectureSubject1Application {
    */
   public static void main(String[] args) {
     // TODO 自動生成されたメソッド・スタブ
-    List<MembersList> newList = new  ArrayList<MembersList>();
-    MembersList member1 = new MembersList(0, "tpham@netprotections.co.jp", "01-1234-5678", "Pham Thuc Hung", "ファン　トュック　フン", "男性", "1991/09/16", "東京都中央区銀座1-10-6 銀座ファーストビル4階", false, false, false);
-    MembersList member2 = new MembersList(1,"vle@netprotections.co.jp", "01-1234-5678", "Le van Hiep", "ファン　トュック　フン",  "男性",  "1991/09/16",  "東京都中央区銀座1-10-6 銀座ファーストビル4階", false, false, false);
-    MembersList member3 = new MembersList(2, "ksato@netprotections.co.jp", "01-1234-5678", "佐藤 健太", "サトウ　ケンタ", "男性", "1991/09/16", "東京都中央区銀座1-10-6 銀座ファーストビル4階", false, false, false);
-    MembersList member4 = new MembersList(3, "snozaki@netprotections.co.jp",  "01-1234-5678",   "野崎 才門",  "ノザキ　サイモン",  "男性",  "1991/09/16",  "東京都中央区銀座1-10-6 銀座ファーストビル4階", false, false, false);
-    MembersList member5 = new MembersList(4, "yiwata@netprotections.co.jp",  "01-1234-5678",  "岩田 結",  "イワタ　ユイ",  "女性", "1991/09/16",  "東京都中央区銀座1-10-6 銀座ファーストビル4階", false, false, false);
-    MembersList member6 = new MembersList(5,  "tnagasaki@netprotections.co.jp", "01-1234-5678", "長崎 太志", "ナガザキ　タイシ", "男性",  "1991/09/16",  "東京都中央区銀座1-10-6 銀座ファーストビル4階", false, false, false);
-    MembersList member7 = new MembersList(6, "kfukakawa@netprotections.co.jp",  "01-1234-5678",  "深川 健太",  "フカケン",  "男性",  "1991/09/16",  "東京都中央区銀座1-10-6 銀座ファーストビル4階", false, false, false);
-    newList.add(0, member1);
-    newList.add(1, member2);
-    newList.add(2, member3);
-    newList.add(3, member4);
-    newList.add(4, member5);
-    newList.add(5, member6);
-    newList.add(6, member7);
-    MembersList.memberList = newList;
+    List<MembersList> members = new  ArrayList<MembersList>();
+    Data data = new Data();
+    MembersList.memberList = data.members;
 
     while (true) {
       printMenu();
