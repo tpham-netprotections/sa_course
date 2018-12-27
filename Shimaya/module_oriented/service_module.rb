@@ -11,12 +11,13 @@ module Service
     service_usage = service_usages[member_id.to_i][service_id.to_i]
 
     if service_usage == true
-      service_usage == false
+      service_usage = false
       puts "stop" + services[service_id.to_i]
     else
-      service_usage == true
-      puts "stop" + services[service_id.to_i]
+      service_usage = true
+      puts "start" + services[service_id.to_i]
     end
+    service_usages[member_id.to_i][service_id.to_i] = service_usage
     return service_usages
   end
 
