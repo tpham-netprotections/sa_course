@@ -17,40 +17,43 @@ def menu()
     index += 1
   end
 
-  @order = gets.chomp.to_i
-  selected_menu = menus[@order]
+  order = gets.chomp.to_i
+  selected_menu = menus[order]
 
 
   puts "------------------#{selected_menu}----------------------"
-  if @order == 1
+  case order
+  # 会員登録
+  when 1
     @members = Member.register(@members)
-  end
 
-  if @order == 2
+  # ログイン/ログアウト
+  when 2
     @login_status = Auth.login(@login_status)
-  end
 
-  if @order == 3
+  # 会員検索
+  when 3
     if @login_status == true
       @member = Member.search(@members)
     else
       puts 'ログインしてください'
       @login_status = Auth.login(@login_status)
     end
-  end
 
-  if @order == 4
+  # 会員情報変更
+  when 4
     if @login_status == true
       @members = Member.change(@members)
     else
       puts 'ログインしてください'
       @login_status = Auth.login(@login_status)
     end
+
+  # システム終了
+  when 0
+    exit  
   end
 
-  if @order == 0
-    exit
-  end
 end
 
 while true do

@@ -93,34 +93,34 @@ def change
 end
 
 def menus
-  puts '-------------------会員登録サービス---------------------'
-  puts '使用する機能を選んでください'
-  menus = ['終了', '新規会員登録', 'ログイン/ログアウト', '会員情報検索', '会員情報変更', 'サービス利用登録/停止']
+      puts '-------------------会員登録サービス---------------------'
+      puts '使用する機能を選んでください'
+      menus = ['終了', '新規会員登録', 'ログイン/ログアウト', '会員情報検索', '会員情報変更', 'サービス利用登録/停止']
 
-  index = 0
-  menus.each do |menu|
+      index = 0
+      menus.each do |menu|
 
-    puts "#{index}.#{menu}"
-    index += 1
-  end
+        puts "#{index}.#{menu}"
+        index += 1
+      end
 
-  @order = gets.chomp.to_i
-  selected_menu = menus[@order]
+      @order = gets.chomp.to_i
+      selected_menu = menus[@order]
 
 
-  puts "------------------#{selected_menu}----------------------"
-  if @order == 1
-    register
-  end
+      puts "------------------#{selected_menu}----------------------"
+      if @order == 1
+        register
+      end
 
-  if @order == 2
-    login
-  end
+      if @order == 2
+        login
+      end
 
-  if @order == 3
-    if @login_status == true
-      search
-    else
+      if @order == 3
+        if @login_status == true
+          search
+        else
       puts 'ログインしてください'
       login
     end

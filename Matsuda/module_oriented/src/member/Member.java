@@ -17,6 +17,11 @@ public class Member {
   public String userBirthday;
   public String userAddress;
 
+  public boolean huhululuStatus;
+  public boolean atobaraiStatus;
+  public boolean atoneStatus;
+
+
   public List<Member> memberList;
 
   public Member(String userMail, String userPhoneNumber, String userNameKanji,
@@ -29,6 +34,12 @@ public class Member {
       this.userSex = userSex;
       this.userBirthday = userBirthday;
       this.userAddress = userAddress;
+  }
+
+  public void setSerbiceStatus(boolean huhululuStatus, boolean atobaraiStatus, boolean atoneStatus) {
+      this.huhululuStatus = huhululuStatus;
+      this.atobaraiStatus = atobaraiStatus;
+      this.atoneStatus = atoneStatus;
   }
 
   public void printMemberData (Member member) {
@@ -80,6 +91,69 @@ public class Member {
 
 
   }
+
+  //サービス利用登録
+  public void serviceStartStop (Member member) {
+
+      //ログインチェック
+      Auth currentUser = new Auth();
+      currentUser.loginCheck(member);
+
+      //会員IDの入力
+      System.out.println("会員IDを入力してください");
+      Scanner scanner = new Scanner(System.in);
+      int memberId = scanner.nextInt();
+      Member member1 = memberList.get(memberId);
+      member1.printMemberData(member1);
+
+
+
+      //サービスメニューの表示
+      System.out.println("=========会員管理サービス=========\n" +
+              "1．フフルル" +
+              "2．後払い" +
+              "3．atone" +
+              "サービスを選んでください：");
+
+      //利用開始・停止したいサービスの選択
+
+      int serviceId = scanner.nextInt();
+
+      switch (serviceId) {
+
+      case 1:
+          if (member1.huhululuStatus == false) {
+              member1.huhululuStatus = true;
+              System.out.println("フフルルの利用登録完了しました！");
+          } else {
+              member1.huhululuStatus = false;
+              System.out.println("フフルルの利用を停止しました！");
+          }
+          break;
+      case 2:
+          if (member1.atobaraiStatus == false) {
+              member1.atobaraiStatus = true;
+              System.out.println("後払いの利用登録完了しました！");
+          } else {
+              member1.atobaraiStatus = false;
+              System.out.println("後払いの利用停止しました！");
+          }
+          break;
+      case 3:
+          if (member1.atoneStatus == false) {
+              member1.atoneStatus = true;
+              System.out.println("atoneの利用登録完了しました！");
+          } else {
+              member1.atoneStatus = false;
+              System.out.println("atoneの利用停止しました！");
+          }
+
+          break;
+      }
+
+  }
+
+
 
     //メンバー検索機能
   public void memberSearch (Member user) {
