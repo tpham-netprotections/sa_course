@@ -1,12 +1,12 @@
 package menu;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import auth.Auth;
-import member.Member;
 import data.Data;
+import member.Member;
+import member.MemberModule;
 
 public class MainMenu {
 
@@ -15,18 +15,18 @@ public class MainMenu {
   public int loginPassword;
 
 
-  public void main() {
+  public static void main(String[] args) {
 
     //ユーザーインスタンスの作成
     Member user = new Member(null, null, null, null, null, null ,null);
-    Data data = new Data();
-
-    //上記のリストをmemberListフィールドにセットする
-    user.memberList.addAll(data.members);
 
     //ユーザーの初期値
     user.loginStatus = false;
     user.loginPassword = 1234;
+
+    //デフォルトメンバー追加メソッドの呼び出し
+    Data data = new Data();
+    List<Member> mList = data.defaultMember();
 
     while (true) {
           //メニュー画面の表示
@@ -35,37 +35,28 @@ public class MainMenu {
                   "2．ログイン/ログアウト\n" +
                   "3．会員情報検索\n" +
                   "4．会員情報変更\n" +
-                  "5．サービス利用登録/停止\n" +
-                  "0．終了\n" +
                   "機能を選んでください：");
 
           //メニュー選択（全角数字）
           Scanner scanner = new Scanner(System.in);
           int userInput = scanner.nextInt();
 
-
-
           //各機能への条件分岐
+          MemberModule m = new MemberModule();
+          Auth a = new Auth();
           switch (userInput) {
           case 1:
-              user.MemberRegistration();
+              m.MemberRegistration(mList);
               continue;
           case 2:
-              Auth loginUser = new Auth();
-              loginUser.login(user);
+              a.login(user);
               continue;
           case 3:
-              user.memberSearch(user);
+              m.memberSearch(user, mList);
               continue;
           case 4:
-              user.memberEdit(user);
+              m.memberEdit(user, mList);
               continue;
-//          case 5:
-//              user.aboutService(user);
-//              continue;
-//          case 0:
-//              user.exit(user);
-//              continue;
           }
       }
 
